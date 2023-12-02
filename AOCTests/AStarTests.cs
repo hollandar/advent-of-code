@@ -25,7 +25,7 @@ public class AStarTests
         var path = PathFinder.FindPath(root, end);
 
         Console.WriteLine(path.ToPointsString());
-        Assert.AreEqual(3, path.NodeCount);
+        Assert.AreEqual(4, path.NodeCount);
         var nodes = path.GetNodes().ToList();
         Assert.AreEqual(new Point(0, 0), nodes[0].Point);
         Assert.AreEqual(new Point(3, 8), nodes[1].Point);
@@ -53,7 +53,7 @@ public class AStarTests
         Console.WriteLine(path.ToPointsString());
         Assert.IsTrue(path.Incomplete);
         Assert.AreEqual(0, path.EdgeCount);
-        Assert.AreEqual(1, path.NodeCount);
+        Assert.AreEqual(2, path.NodeCount);
 
     }
 }

@@ -9,7 +9,7 @@ namespace AOCLib.AStar
 {
     public static class PathFinder
     {
-        public static Path FindPath(Node start, Node end)
+        public static DirectedPath FindPath(Node start, Node end)
         {
             HashSet<Node> openSet = new HashSet<Node> { start };
             HashSet<Node> closedSet = new HashSet<Node>();
@@ -33,7 +33,7 @@ namespace AOCLib.AStar
                     }
                     while (currentStep != start);
 
-                    return new Path(steps);
+                    return new DirectedPath(steps);
 
                 }
 
@@ -65,7 +65,7 @@ namespace AOCLib.AStar
                 }
             }
 
-            return new Path(null);
+            return new DirectedPath(null);
         }
     }
 }

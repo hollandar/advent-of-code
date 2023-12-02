@@ -2,11 +2,11 @@
 
 namespace AOCLib.AStar
 {
-    public sealed class Path
+    public sealed class DirectedPath
     {
         List<Step> steps;
 
-        public Path(List<Step>? steps = null)
+        public DirectedPath(List<Step>? steps = null)
         {
             this.steps = steps ?? new List<Step>();
         }
@@ -42,7 +42,7 @@ namespace AOCLib.AStar
         }
 
         public bool Incomplete { get { return steps.Count == 0; } }
-        public int NodeCount { get { return steps.Count + 1; } }
+        public int NodeCount { get { return steps.Count + 2; } }
         public int EdgeCount { get { return steps.Count; } }
     }
 }
