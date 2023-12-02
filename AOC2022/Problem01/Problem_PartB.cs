@@ -4,7 +4,7 @@ namespace AdventOfCode2022.Problem01;
 
 public partial class Problem : ProblemPart<InputRow>
 {
-    protected override long PartB(IEnumerable<InputRow> datas)
+    protected override string PartB(IEnumerable<InputRow> datas)
     {
         long answer = 0;
 
@@ -30,7 +30,7 @@ public partial class Problem : ProblemPart<InputRow>
 
         answer = elves.OrderByDescending(x => x).Take(3).Sum();
 
-        return answer;
+        return answer.ToString();
     }
 
 }

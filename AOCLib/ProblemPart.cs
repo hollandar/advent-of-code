@@ -12,14 +12,23 @@ public interface IProblemPart
 
 public abstract class ProblemPart<TInputRow>: IProblemPart
 {
+    bool debug = false;
+
     public ProblemPart()
     {
         
     }
+    
     public abstract bool Complete { get; }
+    protected bool InDebug => debug;
 
-    protected abstract long PartA(IEnumerable<TInputRow> input);
-    protected abstract long PartB(IEnumerable<TInputRow> input);
+    public void SetDebug(bool debug = true)
+    {
+        this.debug = debug;
+    }
+
+    protected abstract string PartA(IEnumerable<TInputRow> input);
+    protected abstract string PartB(IEnumerable<TInputRow> input);
     public abstract void Run();
 
     protected void RunPartA(string folder, Regex regex)
@@ -60,5 +69,41 @@ public abstract class ProblemPart<TInputRow>: IProblemPart
     }
 
 
+    protected void DebugLn(string s = "", int indent = 2, ConsoleColor color = ConsoleColor.White)
+    {
+        if (debug) PrintLn(s, indent, color);
+    }
 
+    protected void PrintLn(string s = "", int indent = 2, ConsoleColor color = ConsoleColor.White)
+    {
+        for (int i = 0; i < indent; i++)
+        {
+            Console.Write("  ");
+        }
+
+        Console.ForegroundColor = color;
+        Console.WriteLine(s);
+    }
+
+
+    protected void Debug(string s = "", int indent = 0, ConsoleColor color = ConsoleColor.White)
+    {
+        if (debug) Print(s, indent, color);
+    }
+
+    protected void Print(string s = "", int indent = 0, ConsoleColor color = ConsoleColor.White)
+    {
+        for (int i = 0; i < indent; i++)
+        {
+            Console.Write("  ");
+        }
+
+        Console.ForegroundColor = color;
+        Console.Write(s);
+    }
+
+    public void Assert(bool condition, string message = "")
+    {
+        System.Diagnostics.Debug.Assert(condition, message);
+    }
 }

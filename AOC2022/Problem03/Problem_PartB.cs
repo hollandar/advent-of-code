@@ -4,7 +4,7 @@ namespace AdventOfCode2022.Problem03;
 
 public partial class Problem : ProblemPart<InputRow>
 {
-    protected override long PartB(IEnumerable<InputRow> datas)
+    protected override string PartB(IEnumerable<InputRow> datas)
     {
         int answer = 0;
 
@@ -26,7 +26,7 @@ public partial class Problem : ProblemPart<InputRow>
             }
         }
 
-        return answer;
+        return answer.ToString();
     }
 
 }

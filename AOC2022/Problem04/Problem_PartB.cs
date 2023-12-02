@@ -4,7 +4,7 @@ namespace AdventOfCode2022.Problem04;
 
 public partial class Problem : ProblemPart<InputRow>
 {
-    protected override long PartB(IEnumerable<InputRow> datas)
+    protected override string PartB(IEnumerable<InputRow> datas)
     {
         int answer = 0;
 
@@ -26,7 +26,7 @@ public partial class Problem : ProblemPart<InputRow>
             answer += overlaps ? 1 : 0;
         }
 
-        return answer;
+        return answer.ToString();
     }
 
     static bool Overlaps(int l1, int r1, int l2, int r2)

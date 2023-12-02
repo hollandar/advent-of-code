@@ -4,7 +4,7 @@ namespace AdventOfCode2022.Problem02;
 
 public partial class Problem : ProblemPart<InputRow>
 {
-    protected override long PartA(IEnumerable<InputRow> datas)
+    protected override string PartA(IEnumerable<InputRow> datas)
     {
         int answer = 0;
         foreach (var data in datas)
@@ -49,7 +49,7 @@ public partial class Problem : ProblemPart<InputRow>
             answer += roundScore;
         }
 
-        return answer;
+        return answer.ToString();
     }
 
 

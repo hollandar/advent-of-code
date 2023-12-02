@@ -4,7 +4,7 @@ namespace AdventOfCode2022.Problem04;
 
 public partial class Problem : ProblemPart<InputRow>
 {
-    protected override long PartA(IEnumerable<InputRow> datas)
+    protected override string PartA(IEnumerable<InputRow> datas)
     {
         int answer = 0;
 
@@ -22,7 +22,7 @@ public partial class Problem : ProblemPart<InputRow>
             answer += contained ? 1 : 0;
         }
 
-        return answer;
+        return answer.ToString();
     }
 
     static bool Contained(int l1, int r1, int l2, int r2)

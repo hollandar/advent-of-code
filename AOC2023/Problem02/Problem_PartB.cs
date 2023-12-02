@@ -6,7 +6,7 @@ namespace AdventOfCode2023.Problem02;
 
 public partial class Problem : ProblemPart<InputRow>
 {
-    protected override long PartB(IEnumerable<InputRow> datas)
+    protected override string PartB(IEnumerable<InputRow> datas)
     {
         long answer = 0;
 
@@ -14,7 +14,7 @@ public partial class Problem : ProblemPart<InputRow>
         foreach (var data in datas)
         {
             var match = GameRegex().Match(data.Value);
-            Debug.Assert(match.Success);
+            Assert(match.Success);
             var gameNumber = int.Parse(match.Groups["GameNumber"].Value);
 
             var throws = match.Groups["Throws"].Value;
@@ -120,6 +120,6 @@ public partial class Problem : ProblemPart<InputRow>
 
         }
 
-        return answer;
+        return answer.ToString();
     }
 }
