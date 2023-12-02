@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AOCLib.Primitives
 {
-    public struct Point
+    public class Point
     {
         int x, y;
         public Point(int x, int y)

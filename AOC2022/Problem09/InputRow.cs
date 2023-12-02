@@ -2,6 +2,7 @@
 
 public class InputRow
 {
-    public string Value { get; set; } = string.Empty;
+    public string Direction{ get; set; } = string.Empty;
+    public string Distance{ get; set; } = string.Empty;
 };
 
