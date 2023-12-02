@@ -29,7 +29,7 @@ var problems = new Dictionary<string, IProblemPart>()
     ["25"] = new AdventOfCode2023.Problem25.Problem(),
 };
 
-if (problems.Values.Any(r => !r.Complete))
+if (problems.Values.Any(r => !r.Complete) && args[0] == "--execute")
 {
     problems.Values.Where(r => !r.Complete).First().Run();
     return;

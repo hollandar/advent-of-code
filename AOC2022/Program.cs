@@ -29,7 +29,7 @@ var problems = new Dictionary<string, IProblemPart>()
     ["25"] = new AdventOfCode2022.Problem25.Problem(),
 };
 
-if (problems.Values.Any(r => !r.Complete))
+if (problems.Values.Any(r => !r.Complete) && args[0] == "--execute")
 {
     problems.Values.Where(r => !r.Complete).First().Run();
     return;
@@ -40,7 +40,6 @@ var problem = Console.ReadLine();
 
 if (problems.TryGetValue(problem!, out var func))
 {
-
     func.Run();
 }
 else { throw new Exception($"Problem {problem} not found"); }

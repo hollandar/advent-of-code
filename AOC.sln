@@ -6,9 +6,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdventOfCode2022", "AOC2022
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdventOfCode2023", "AOC2023\AdventOfCode2023.csproj", "{7B345F95-B2F0-4A91-B00F-F1A27C405D5D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AOCLib", "AOCLib\AOCLib.csproj", "{7A984921-35B0-4A1A-AB0D-0BE1C00048EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AOCLib", "AOCLib\AOCLib.csproj", "{7A984921-35B0-4A1A-AB0D-0BE1C00048EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AOCTests", "AOCTests\AOCTests.csproj", "{3E3AF681-34E2-4423-B0A8-80921655308C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AOCTests", "AOCTests\AOCTests.csproj", "{3E3AF681-34E2-4423-B0A8-80921655308C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2B2F83A1-60DB-4A83-AC99-21616F1FA81B}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
