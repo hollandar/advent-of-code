@@ -5,7 +5,7 @@ namespace AdventOfCode2022.Problem02;
 
 public partial class Problem : ProblemPart<InputRow>
 {
-    public override bool Complete => false;
+    public override bool Complete => true;
 
     public override void Run()
     {
@@ -13,8 +13,11 @@ public partial class Problem : ProblemPart<InputRow>
         RunPartB("Problem02", RowRegex());
     }
 
-    [GeneratedRegex("(?<Value>.*)")]
+    [GeneratedRegex("^(?<Player1>A|B|C)\\s(?<Player2>X|Y|Z)$")]
     public static partial Regex RowRegex();
-    
+
+    enum PlayEnum { Rock, Paper, Scissors }
+    enum OutcomeEnum { Win, Loss, Draw }
+
 }
 
