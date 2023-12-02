@@ -12,7 +12,6 @@ public partial class Problem : ProblemPart<InputRow>
 
         DebugStack(stacksArray);
 
-
         foreach (var move in data.Moves)
         {
 

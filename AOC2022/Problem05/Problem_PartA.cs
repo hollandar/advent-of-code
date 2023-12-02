@@ -14,10 +14,8 @@ public partial class Problem : ProblemPart<InputRow>
 
         DebugStack(stacksArray);
 
-
         foreach (var move in data.Moves)
         {
-
             int fromIndex = move.From - 1;
             int toIndex = move.To - 1;
 
