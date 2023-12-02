@@ -5,7 +5,7 @@ namespace AdventOfCode2022.Problem14;
 
 public partial class Problem : ProblemPart<InputRow>
 {
-    public override bool Complete => false;
+    public override bool Complete => true;
 
     public override void Run()
     {
@@ -15,6 +15,17 @@ public partial class Problem : ProblemPart<InputRow>
 
     [GeneratedRegex("(?<Value>.*)")]
     public static partial Regex RowRegex();
-    
+
+    class Cell
+    {
+        public bool sand;
+        public bool rock;
+
+        public Cell()
+        {
+            sand = false;
+            rock = false;
+        }
+    }
 }
 
