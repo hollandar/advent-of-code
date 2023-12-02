@@ -14,7 +14,7 @@ public partial class Problem : ProblemPart<InputRow>
                 "A" => PlayEnum.Rock,
                 "B" => PlayEnum.Paper,
                 "C" => PlayEnum.Scissors,
-                _ => throw new InvalidDataException()
+                _ => throw new NotImplementedException()
             };
 
             var desiredOutcome = data.Player2 switch
@@ -22,7 +22,7 @@ public partial class Problem : ProblemPart<InputRow>
                 "X" => OutcomeEnum.Loss,
                 "Y" => OutcomeEnum.Draw,
                 "Z" => OutcomeEnum.Win,
-                _ => throw new InvalidDataException()
+                _ => throw new NotImplementedException()
             };
 
             var myPlay = PlayToOutcome(opponentPlay, desiredOutcome);
@@ -31,7 +31,7 @@ public partial class Problem : ProblemPart<InputRow>
                 PlayEnum.Rock => 1,
                 PlayEnum.Paper => 2,
                 PlayEnum.Scissors => 3,
-                _ => throw new InvalidDataException()
+                _ => throw new NotImplementedException()
             };
 
             var win = Win(myPlay, opponentPlay);
@@ -40,7 +40,7 @@ public partial class Problem : ProblemPart<InputRow>
                 OutcomeEnum.Win => 6,
                 OutcomeEnum.Draw => 3,
                 OutcomeEnum.Loss => 0,
-                _ => throw new InvalidDataException()
+                _ => throw new NotImplementedException()
             };
 
             // Console.WriteLine($"{data.Player1} {data.Player2}  {opponentPlay} {myPlay} {roundScore}");
@@ -59,7 +59,8 @@ public partial class Problem : ProblemPart<InputRow>
             {
                 PlayEnum.Rock => PlayEnum.Paper,
                 PlayEnum.Paper => PlayEnum.Scissors,
-                PlayEnum.Scissors => PlayEnum.Rock
+                PlayEnum.Scissors => PlayEnum.Rock,
+                _ => throw new NotImplementedException()
             };
         }
 
@@ -69,7 +70,8 @@ public partial class Problem : ProblemPart<InputRow>
             {
                 PlayEnum.Rock => PlayEnum.Scissors,
                 PlayEnum.Paper => PlayEnum.Rock,
-                PlayEnum.Scissors => PlayEnum.Paper
+                PlayEnum.Scissors => PlayEnum.Paper,
+                _ => throw new NotImplementedException()
             };
         }
 

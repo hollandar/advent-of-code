@@ -14,7 +14,7 @@ public partial class Problem : ProblemPart<InputRow>
                 "A" => PlayEnum.Rock,
                 "B" => PlayEnum.Paper,
                 "C" => PlayEnum.Scissors,
-                _ => throw new InvalidDataException()
+                _ => throw new NotImplementedException()
             };
 
             var myPlay = data.Player2 switch
@@ -22,7 +22,7 @@ public partial class Problem : ProblemPart<InputRow>
                 "X" => PlayEnum.Rock,
                 "Y" => PlayEnum.Paper,
                 "Z" => PlayEnum.Scissors,
-                _ => throw new InvalidDataException()
+                _ => throw new NotImplementedException()
             };
 
             var outcome = Win(myPlay, opponentPlay);
@@ -31,7 +31,7 @@ public partial class Problem : ProblemPart<InputRow>
                 PlayEnum.Rock => 1,
                 PlayEnum.Paper => 2,
                 PlayEnum.Scissors => 3,
-                _ => throw new InvalidDataException()
+                _ => throw new NotImplementedException()
             };
 
             var win = Win(myPlay, opponentPlay);
@@ -41,7 +41,7 @@ public partial class Problem : ProblemPart<InputRow>
                 OutcomeEnum.Win => 6,
                 OutcomeEnum.Draw => 3,
                 OutcomeEnum.Loss => 0,
-                _ => throw new InvalidDataException()
+                _ => throw new NotImplementedException()
             };
 
             // Console.WriteLine($"{data.Player1} {data.Player2}  {opponentPlay} {myPlay} {roundScore}");
