@@ -8,7 +8,6 @@ public partial class Problem : ProblemPart<InputRow>
     {
         int answer = 0;
 
-        int totalBadgeScore = 0;
         foreach (var data in datas)
         {
             var line = data.Value;
