@@ -125,7 +125,4 @@ public partial class Problem : ProblemPart<InputRow>
 
     [GeneratedRegex("^Game (?<GameNumber>\\d+): (?<Throws>.*)$")]
     public partial Regex GameRegex();
-
-    [GeneratedRegex("(?:(?<Count>\\d+) (?<Color>blue|red|green),{0,1})*;")]
-    public partial Regex ThrowsRegex();
 }
