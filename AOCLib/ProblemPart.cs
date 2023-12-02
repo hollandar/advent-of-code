@@ -71,7 +71,7 @@ public abstract class ProblemPart<TInputRow>: IProblemPart
 
     protected void DebugLn(string s = "", int indent = 2, ConsoleColor color = ConsoleColor.White)
     {
-        if (debug) PrintLn(s, indent, color);
+        if (InDebug) PrintLn(s, indent, color);
     }
 
     protected void PrintLn(string s = "", int indent = 2, ConsoleColor color = ConsoleColor.White)
@@ -88,7 +88,7 @@ public abstract class ProblemPart<TInputRow>: IProblemPart
 
     protected void Debug(string s = "", int indent = 0, ConsoleColor color = ConsoleColor.White)
     {
-        if (debug) Print(s, indent, color);
+        if (InDebug) Print(s, indent, color);
     }
 
     protected void Print(string s = "", int indent = 0, ConsoleColor color = ConsoleColor.White)
