@@ -12,6 +12,7 @@ public partial class Problem : ProblemPart<InputRow>
         string startValveId = "AA";
         var startingValve = valves[startValveId];
 
+        // Initial calculation didnt not accept the number of players, that was added for part 2.
         var answer = CalculateBest(startingValve, 30, 1);
 
         return answer.ToString();

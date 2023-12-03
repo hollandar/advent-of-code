@@ -32,7 +32,6 @@ public partial class Problem : ProblemPart<InputRow>
     protected Terrain Load(IEnumerable<InputRow> datas)
     {
         var grid = new Terrain { Grid = new List<char[]>() };
-        int w = 0;
         foreach (var line in datas)
         {
             if (grid.Width != 0)

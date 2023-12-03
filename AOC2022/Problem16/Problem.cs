@@ -5,7 +5,7 @@ namespace AdventOfCode2022.Problem16;
 
 public partial class Problem : ProblemPart<InputRow>
 {
-    public override bool Complete => false;
+    public override bool Complete => true;
 
     public override void Run()
     {
@@ -22,6 +22,8 @@ public partial class Problem : ProblemPart<InputRow>
         public int rate;
         public List<Edge> edges = new();
         public HashSet<string> leadsToId = new();
+
+        // Bit mask for this valve
         public ulong mask = 0;
 
         public int CompareTo(object? obj)
@@ -91,8 +93,10 @@ public partial class Problem : ProblemPart<InputRow>
         return BestInternal(startingValve, minutesLeft, startingValve, minutesLeft, players, opened);
     }
 
-    static int Best(Valve startingValve, int minutesLeft, int players, ulong opened = 0)
+    static int Best(Valve startingValve, int minutesLeft, int players, ulong opened)
     {
+        // Opened is a 64 but long that uses its bits to track the open state of each valve
+        // Valve bitmask was set a load time for the valve
         return BestInternal(startingValve, minutesLeft, startingValve, minutesLeft, players, opened);
     }
 
@@ -100,6 +104,7 @@ public partial class Problem : ProblemPart<InputRow>
     {
         string key = players + "/" + valve.mask + "/" + opened + "/" + minutesLeft;
 
+        // Second player handling, if we get the end of the first player, we get the next player to optimally open the remaining valves
         if (minutesLeft <= 1)
         {
             if (players > 1)
@@ -119,16 +124,19 @@ public partial class Problem : ProblemPart<InputRow>
         }
 
         var best = 0;
-        if ((opened & valve.mask) == 0)
+        if ((opened & valve.mask) == 0) // The valve is not open
         {
             int production = valve.rate * (minutesLeft - 1);
             var currentOpened = opened | valve.mask;
             foreach (var edge in valve.edges)
             {
+                // Open it if it produces anything
                 if (production != 0)
                 {
                     best = Math.Max(best, production + BestInternal(startingValve, playMinutes, edge.valve, minutesLeft - 2, players, currentOpened));
                 }
+                
+                // Move straight on to the next valve without opening
                 best = Math.Max(best, BestInternal(startingValve, playMinutes, edge.valve, minutesLeft - 1, players, opened));
             }
         }
@@ -136,6 +144,7 @@ public partial class Problem : ProblemPart<InputRow>
         {
             foreach (var edge in valve.edges)
             {
+                // Move straight on to the next valve without opening
                 best = Math.Max(best, BestInternal(startingValve, playMinutes, edge.valve, minutesLeft - 1, players, opened));
             }
         }
