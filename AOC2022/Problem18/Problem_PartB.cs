@@ -58,7 +58,7 @@ public partial class Problem : ProblemPart<InputRow>
                     var coord = new Coord { x = x, y = y, z = z };
                     if (cubes.Contains(Encode(coord))) continue;
 
-                    // If we cant flood fill to 20000 (edge of the map) we are encased
+                    // If we cant flood fill to 20000 open cubes, we must be encased
                     var encased = !Reaches(cubes, coord, 20000);
 
                     if (encased)
