@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.NetworkInformation;
 using System.Numerics;
@@ -39,6 +40,18 @@ namespace AOCLib.Primitives
         public long ManhattanDisanceTo(Point point)
         {
             return Math.Abs(x - point.x) + Math.Abs(y - point.y);
+        }
+
+        public long HorizontalLength(Point p)
+        {
+            Debug.Assert(Y == p.Y, $"The points must be on the same row {Y}");
+            return Math.Abs(x - p.x) + 1;
+        }
+
+        public long VerticalLength(Point p)
+        {
+            Debug.Assert(X == p.X, $"The points must be in the same column {X}");
+            return Math.Abs(y - p.y) + 1;
         }
 
         public bool Equals(Point? point)
@@ -101,10 +114,31 @@ namespace AOCLib.Primitives
         public bool WithinBounds(Point bottomRight) => WithinBounds(Zero, bottomRight);
         public bool WithinBounds(long x2, long y2) => WithinBounds(Zero, new Point(x2, y2));
         public bool WithinBounds(long x1, long y1, long x2, long y2) => WithinBounds(new Point(x1, y1), new Point(x2, y2));
+        public bool WithinBounds(Bounds bounds) => WithinBounds(bounds.TopLeft, bounds.BottomRight);
+        public IEnumerable<Point> AdjacentPoints(Bounds bounds)
+        {
+            if (!WithinBounds(bounds)) throw new Exception("Point is not within bounds");
+            if (X > bounds.TopLeft.X && Y > bounds.TopLeft.Y) yield return new Point(x - 1, y - 1);
+            if (Y > bounds.TopLeft.Y) yield return new Point(x, y - 1);
+            if (X < bounds.BottomRight.X && Y > bounds.TopLeft.Y) yield return new Point(x + 1, y - 1);
+            if (X > bounds.TopLeft.X) yield return new Point(x - 1, y);
+            if (X < bounds.BottomRight.X) yield return new Point(x + 1, y);
+            if (X > bounds.TopLeft.X && Y < bounds.BottomRight.Y) yield return new Point(x - 1, y + 1);
+            if (Y < bounds.BottomRight.Y) yield return new Point(x, y + 1);
+            if (X < bounds.BottomRight.X && Y < bounds.BottomRight.Y) yield return new Point(x + 1, y + 1);
+        }
+
+        public Point LeftAbove() => new Point(x - 1, y - 1);
+        public Point Above() => new Point(x, y - 1);
+        public Point RightAbove() => new Point(x + 1, y - 1);
+        public Point Left() => new Point(x - 1, y);
+        public Point Right() => new Point(x + 1, y);
+        public Point LeftBelow() => new Point(x - 1, y + 1);
+        public Point Below() => new Point(x, y + 1);
+        public Point RightBelow() => new Point(x + 1, y + 1);
 
         public static Point Zero = new Point(0, 0);
         public static bool operator ==(Point? a, Point? b) => a?.Equals(b) ?? false;
         public static bool operator !=(Point? a, Point? b) => !(a == b);
-
     }
 }

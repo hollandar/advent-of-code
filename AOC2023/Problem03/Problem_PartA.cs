@@ -1,5 +1,5 @@
 ﻿using AOCLib;
-using System.Drawing;
+using AOCLib.Primitives;
 
 namespace AdventOfCode2023.Problem03;
 
@@ -7,68 +7,25 @@ public partial class Problem : ProblemPart<InputRow>
 {
     protected override string PartA(IEnumerable<InputRow> datas)
     {
-        List<char[]> rows = new List<char[]>();
-        foreach (var data in datas)
-        {
-            rows.Add(data.Value.ToCharArray());
-        }
+        CharacterGrid grid = new CharacterGrid(datas.Select(r => r.Value));
 
         var partNumbers = new List<Point>();
-        for (int x = 0; x < rows[0].Length; x++)
+        for (int x = 0; x < grid.Width; x++)
         {
-            for (int y = 0; y < rows.Count; y++)
+            for (int y = 0; y < grid.Height; y++)
             {
-                if (rows[y][x] != '.' && !char.IsDigit(rows[y][x]))
+                var p = new Point(x, y);
+                if (grid[p] != '.' && !char.IsDigit(grid[p]))
                 {
-                    if (x > 0)
+                    foreach (var adjacentPoint in p.AdjacentPoints(grid.Bounds))
                     {
-                        if (y > 0 && char.IsDigit(rows[y - 1][x - 1]))
-                        {
-                            partNumbers.Add(new Point(x - 1, y - 1));
-                        }
-                        if (char.IsDigit(rows[y][x - 1]))
-                        {
-                            partNumbers.Add(new Point(x - 1, y));
-                        }
-                        if (y < rows.Count - 1 && char.IsDigit(rows[y + 1][x - 1]))
-                        {
-                            partNumbers.Add(new Point(x - 1, y + 1));
-                        }
+                        if (char.IsDigit(grid[adjacentPoint]))
+                            partNumbers.Add(adjacentPoint);
                     }
-                    if (x < rows[y].Length - 1)
-                    {
-                        if (y > 0 && char.IsDigit(rows[y - 1][x + 1]))
-                        {
-                            partNumbers.Add(new Point(x + 1, y - 1));
-                        }
-                        if (char.IsDigit(rows[y][x + 1]))
-                        {
-                            partNumbers.Add(new Point(x + 1, y));
-                        }
-                        if (y < rows.Count - 1 && char.IsDigit(rows[y + 1][x + 1]))
-                        {
-                            partNumbers.Add(new Point(x + 1, y + 1));
-                        }
-                    }
-                    if (y > 0)
-                    {
-                        if (char.IsDigit(rows[y - 1][x]))
-                        {
-                            partNumbers.Add(new Point(x, y - 1));
-                        }
-                    }
-
-                    if (y < rows.Count - 1)
-                    {
-                        if (char.IsDigit(rows[y + 1][x]))
-                        {
-                            partNumbers.Add(new Point(x, y + 1));
-                        }
-                    }
-
                 }
             }
         }
+
         var coveredPoints = new HashSet<Point>();
         var parts = new List<string>();
         foreach (var point in partNumbers)
@@ -78,23 +35,23 @@ public partial class Problem : ProblemPart<InputRow>
                 continue;
 
             var startPoint = point;
-            if (!Char.IsDigit(rows[startPoint.Y][startPoint.X]))
+            if (!Char.IsDigit(grid[startPoint]))
                 throw new Exception($"Not a number at this location {startPoint}");
-            while (startPoint.X > 0 && Char.IsDigit(rows[startPoint.Y][startPoint.X - 1]))
+            while (startPoint.Left().WithinBounds(grid.Bounds) && Char.IsDigit(grid[startPoint.Left()]))
             {
                 coveredPoints.Add(startPoint);
-                startPoint = new Point(startPoint.X - 1, startPoint.Y);
+                startPoint = startPoint.Left();
             }
             var endPoint = startPoint;
-            while (endPoint.X < rows[0].Length - 1 && Char.IsDigit(rows[endPoint.Y][endPoint.X + 1]))
+            while (endPoint.Right().WithinBounds(grid.Bounds) && Char.IsDigit(grid[endPoint.Right()]))
             {
                 coveredPoints.Add(endPoint);
-                endPoint = new Point(endPoint.X + 1, endPoint.Y);
+                endPoint = endPoint.Right();
             }
 
             coveredPoints.Add(endPoint);
 
-            var partNumber = new String(rows[startPoint.Y][startPoint.X..(endPoint.X + 1)]);
+            var partNumber = grid.SubstringHorizontal(startPoint, startPoint.HorizontalLength(endPoint));
             DebugLn(partNumber);
             parts.Add(partNumber);
 
