@@ -13,6 +13,7 @@ public interface IProblemPart
 public abstract class ProblemPart<TInputRow>: IProblemPart
 {
     bool debug = false;
+    bool sample = false;
 
     public ProblemPart()
     {
@@ -21,6 +22,7 @@ public abstract class ProblemPart<TInputRow>: IProblemPart
     
     public abstract bool Complete { get; }
     protected bool InDebug => debug;
+    protected bool InSample => sample;
 
     public void SetDebug(bool debug = true)
     {
@@ -33,6 +35,7 @@ public abstract class ProblemPart<TInputRow>: IProblemPart
 
     protected void RunPartA(string folder, Regex regex)
     {
+        this.sample = true;
         var start = Stopwatch.GetTimestamp();
         Console.WriteLine("{0} {1}: {2} took {3}",
             folder,
@@ -40,6 +43,8 @@ public abstract class ProblemPart<TInputRow>: IProblemPart
             PartA(new Deserializer($"{folder}/sample.a.txt").Deserialize<TInputRow>(regex)),
             Stopwatch.GetElapsedTime(start).Humanize()
         );
+
+        this.sample = false;
         start = Stopwatch.GetTimestamp();
         Console.WriteLine("{0} {1}: {2} took {3}",
             folder,
@@ -51,6 +56,7 @@ public abstract class ProblemPart<TInputRow>: IProblemPart
     
     protected void RunPartB(string folder, Regex regex)
     {
+        this.sample = true;
         var start = Stopwatch.GetTimestamp();
         Console.WriteLine("{0} {1}: {2} took {3}",
             folder,
@@ -58,6 +64,8 @@ public abstract class ProblemPart<TInputRow>: IProblemPart
             PartB(new Deserializer($"{folder}/sample.b.txt").Deserialize<TInputRow>(regex)),
             Stopwatch.GetElapsedTime(start).Humanize()
         );
+
+        this.sample = false;
         start = Stopwatch.GetTimestamp();
         Console.WriteLine("{0} {1}: {2} took {3}",
             folder,
