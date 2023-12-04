@@ -10,5 +10,10 @@
             this.TopLeft = topLeft;
             this.BottomRight = bottomRight;
         }
+
+        public bool Contains(Point p)
+        {
+            return p.WithinBounds(TopLeft, BottomRight);
+        }
     }
 }
