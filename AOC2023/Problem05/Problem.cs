@@ -15,6 +15,24 @@ public partial class Problem : ProblemPart<InputRow>
 
     [GeneratedRegex("(?<Value>.*)")]
     public static partial Regex RowRegex();
-    
+
+    record NumberRange(ulong To, ulong From, ulong Count)
+    {
+        public static NumberRange FromArray(ulong[] values)
+        {
+            return new NumberRange(values[0], values[1], values[2]);
+        }
+
+        public bool InRange(ulong value)
+        {
+            return value >= From && value < From + Count;
+        }
+
+        public ulong Value(ulong value)
+        {
+            if (!InRange(value)) throw new Exception();
+            return (value - From) + To;
+        }
+    }
 }
 
