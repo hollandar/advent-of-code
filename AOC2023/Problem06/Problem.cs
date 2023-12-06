@@ -5,7 +5,7 @@ namespace AdventOfCode2023.Problem06;
 
 public partial class Problem : ProblemPart<InputRow>
 {
-    public override bool Complete => false;
+    public override bool Complete => true;
 
     public override void Run()
     {
