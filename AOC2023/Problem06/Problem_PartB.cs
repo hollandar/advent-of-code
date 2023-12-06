@@ -15,8 +15,6 @@ public partial class Problem : ProblemPart<InputRow>
         var times = ulong.Parse(String.Join("", r.Matches(row0).Select(m => m.Value).ToArray()));
         var distances = ulong.Parse(String.Join("", r.Matches(row1).Select(m => m.Value)).ToArray());
 
-
-        int winCount = 0;
         for (ulong holdTime = 0; holdTime < times; holdTime++)
         {
             var raceTime = times - holdTime;
