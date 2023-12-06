@@ -105,7 +105,7 @@ public partial class Problem : ProblemPart<InputRow>
             var from = seeds[i];
             var count = seeds[i + 1];
 
-
+            // Brute force does not work for such a large list of numbers, need to do range construction instead
             var soilRanges = RangeHelper(seedToSoil, new ItemRange[] { new ItemRange(from,count) });
             var fertilizerRanges = RangeHelper(soilToFertilizer, soilRanges);
             var waterRanges = RangeHelper(fertilizerToWater, fertilizerRanges);
@@ -114,8 +114,6 @@ public partial class Problem : ProblemPart<InputRow>
             var humidityRanges = RangeHelper(temperatureToHumidity, temperatureRanges);
             var locationRanges = RangeHelper(humidityToLocation, humidityRanges);
 
-            Debug(locationRanges.Count.ToString());
-            if (locationRanges.Where(r => r.From == 0).Any()) DebugLn("zero"); else DebugLn();
             results.Add(locationRanges.Min(r => r.From));
         }
 

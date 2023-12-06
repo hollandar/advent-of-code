@@ -109,7 +109,6 @@ public partial class Problem : ProblemPart<InputRow>
             var temperature = lightToTemperature.Where(r => r.InRange(light)).Select(r => (ulong?)r.Value(light)).SingleOrDefault() ?? light;
             var humidity = temperatureToHumidity.Where(r => r.InRange(temperature)).Select(r => (ulong?)r.Value(temperature)).SingleOrDefault() ?? temperature;
             var location = humidityToLocation.Where(r => r.InRange(humidity)).Select(r => (ulong?)r.Value(humidity)).SingleOrDefault() ?? humidity;
-            DebugLn($"seed {seed} soin {soil} fertilizer {fertilizer} water {water} light {light} temperature {temperature} humidity {humidity} location {location}");
 
             results.Add(location);
         }

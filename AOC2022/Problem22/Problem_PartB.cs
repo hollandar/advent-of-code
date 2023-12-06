@@ -6,6 +6,10 @@ namespace AdventOfCode2022.Problem22;
 
 public partial class Problem : ProblemPart<InputRow>
 {
+
+    // This component is mapped by hand for the Input, rather than the sample.
+    // The sample will return the wrong number.
+
     protected override string PartB(IEnumerable<InputRow> datas)
     {
         List<string> map = new List<string>();
