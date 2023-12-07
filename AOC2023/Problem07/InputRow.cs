@@ -2,6 +2,7 @@
 
 public class InputRow
 {
-    public string Value { get; set; } = string.Empty;
+    public string Cards { get; set; } = string.Empty;
+    public int Bid { get; set; } = 0;
 };
 

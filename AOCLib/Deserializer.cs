@@ -36,7 +36,7 @@ public class Deserializer
                         throw new MissingFieldException($"Missing field {property.Name}");
                     }
                     var value = match.Groups[property.Name].Value;
-                    property.SetValue(record, value);
+                    property.SetValue(record, Convert.ChangeType(value, property.PropertyType));
                 }
                 result.Add(record);
             }

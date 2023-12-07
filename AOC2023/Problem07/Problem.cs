@@ -5,7 +5,7 @@ namespace AdventOfCode2023.Problem07;
 
 public partial class Problem : ProblemPart<InputRow>
 {
-    public override bool Complete => false;
+    public override bool Complete => true;
 
     public override void Run()
     {
@@ -13,7 +13,7 @@ public partial class Problem : ProblemPart<InputRow>
         RunPartB("Problem07", RowRegex());
     }
 
-    [GeneratedRegex("(?<Value>.*)")]
+    [GeneratedRegex("^(?<Cards>.*) (?<Bid>.*)$")]
     public static partial Regex RowRegex();
     
 }
