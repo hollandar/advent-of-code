@@ -17,12 +17,23 @@ namespace AOCLib.Primitives
             this.BottomRight = bottomRight;
             this.Orientation = orientation;
         }
+
+        public Bounds(long x, long y) : this(new Point(0, 0), new Point(x, y)) { }
+
         public long Top => TopLeft.Y;
         public long Bottom => BottomRight.Y;
         public long Left => TopLeft.X;
         public long Right => BottomRight.X;
-
+        public long Height => BottomRight.Y - TopLeft.Y + 1;
+        public long Width => BottomRight.X - TopLeft.X + 1;
         public Bounds LocalBounds => new Bounds(new Point(0, 0), new Point(Right - Left, Bottom - Top));
+
+        public static Bounds Zero = new Bounds(0, 0);
+        
+        public Bounds Clone(Point? topLeft = null, Point? bottomRight = null)
+        {
+            return new Bounds(topLeft ?? TopLeft, bottomRight ?? BottomRight);
+        }
 
         public bool Contains(Point p)
         {
