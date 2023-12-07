@@ -12,8 +12,8 @@ public partial class Problem : ProblemPart<InputRow>
         var row1 = datas.ElementAt(1).Value;
 
         var r = new Regex("\\d+");
-        var times = r.Matches(row0).Select(m => int.Parse(m.Value)).ToArray();
-        var distances = r.Matches(row1).Select(m => int.Parse(m.Value)).ToArray();
+        var times = row0.NumbersFromString<int>();
+        var distances = row1.NumbersFromString<int>();
 
         for (int race = 0; race < times.Length; race++)
         {

@@ -29,7 +29,7 @@ public partial class Problem : ProblemPart<InputRow>
         {
             if (data.Value.StartsWith("seeds:") && state == 0)
             {
-                seeds = NumbersFromString(data.Value).ToArray();
+                seeds = data.Value.NumbersFromString<ulong>().ToArray();
                 continue;
             }
 
@@ -53,43 +53,43 @@ public partial class Problem : ProblemPart<InputRow>
             {
                 case 1:
                     {
-                        var values = NumbersFromString(data.Value).ToArray();
+                        var values = data.Value.NumbersFromString<ulong>().ToArray();
                         seedToSoil.Add(NumberRange.FromArray(values));
                     }
                     break;
                 case 2:
                     {
-                        var values = NumbersFromString(data.Value).ToArray();
+                        var values = data.Value.NumbersFromString<ulong>().ToArray();
                         soilToFertilizer.Add(NumberRange.FromArray(values));
                     }
                     break;
                 case 3:
                     {
-                        var values = NumbersFromString(data.Value).ToArray();
+                        var values = data.Value.NumbersFromString<ulong>().ToArray();
                         fertilizerToWater.Add(NumberRange.FromArray(values));
                     }
                     break;
                 case 4:
                     {
-                        var values = NumbersFromString(data.Value).ToArray();
+                        var values = data.Value.NumbersFromString<ulong>().ToArray();
                         waterToLight.Add(NumberRange.FromArray(values));
                     }
                     break;
                 case 5:
                     {
-                        var values = NumbersFromString(data.Value).ToArray();
+                        var values = data.Value.NumbersFromString<ulong>().ToArray();
                         lightToTemperature.Add(NumberRange.FromArray(values));
                     }
                     break;
                 case 6:
                     {
-                        var values = NumbersFromString(data.Value).ToArray();
+                        var values = data.Value.NumbersFromString<ulong>().ToArray();
                         temperatureToHumidity.Add(NumberRange.FromArray(values));
                     }
                     break;
                 case 7:
                     {
-                        var values = NumbersFromString(data.Value).ToArray();
+                        var values = data.Value.NumbersFromString<ulong>().ToArray();
                         humidityToLocation.Add(NumberRange.FromArray(values));
                     }
                     break;
@@ -130,14 +130,5 @@ public partial class Problem : ProblemPart<InputRow>
 
     [GeneratedRegex("(\\d+)")]
     protected partial Regex NumberRegex();
-
-    public IEnumerable<ulong> NumbersFromString(string s)
-    {
-        var matches = NumberRegex().Matches(s);
-        foreach (Match match in matches)
-        {
-            yield return ulong.Parse(match.Value);
-        }
-    }
 
 }
