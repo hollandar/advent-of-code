@@ -90,7 +90,7 @@ public partial class Problem : ProblemPart<InputRow>
 
         // So just get the intervals and find the lowest interval that is devisable by all intervals.
         answer = interval[0];
-        while (!interval.All(r => r == 0 || answer % r == 0))
+        while (!interval.All(r => answer % r == 0))
         {
             answer += interval[0];
         }
