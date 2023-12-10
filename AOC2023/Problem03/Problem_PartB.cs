@@ -40,16 +40,16 @@ public partial class Problem : ProblemPart<InputRow>
             var startPoint = point.numberPoint;
             if (!Char.IsDigit(grid[startPoint]))
                 throw new Exception($"Not a number at this location {startPoint}");
-            while (startPoint.Left().WithinBounds(grid.Bounds) && Char.IsDigit(grid[startPoint.Left()]))
+            while (startPoint.West().WithinBounds(grid.Bounds) && Char.IsDigit(grid[startPoint.West()]))
             {
                 coveredPoints.Add(startPoint);
-                startPoint = startPoint.Left();
+                startPoint = startPoint.West();
             }
             var endPoint = startPoint;
-            while (endPoint.Right().WithinBounds(grid.Bounds) && Char.IsDigit(grid[endPoint.Right()]))
+            while (endPoint.East().WithinBounds(grid.Bounds) && Char.IsDigit(grid[endPoint.East()]))
             {
                 coveredPoints.Add(endPoint);
-                endPoint = endPoint.Right();
+                endPoint = endPoint.East();
             }
 
             coveredPoints.Add(endPoint);

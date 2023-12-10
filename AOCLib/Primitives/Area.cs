@@ -28,7 +28,7 @@ namespace AOCLib.Primitives
 
         public Point Right(Point p)
         {
-            var right = p.Right();
+            var right = p.East();
             if (!Contains(right))
             {
                 right = new Point(MinimumX, p.Y);
@@ -41,7 +41,7 @@ namespace AOCLib.Primitives
 
         public Point Down(Point p)
         {
-            var down = p.Below();
+            var down = p.South();
             if (!Contains(down))
             {
                 down = new Point(p.X, MinimumY);
@@ -54,7 +54,7 @@ namespace AOCLib.Primitives
 
         public Point Left(Point p)
         {
-            var left = p.Left();
+            var left = p.West();
             if (!Contains(left))
             {
                 left = new Point(MaximumX, p.Y);
@@ -67,7 +67,7 @@ namespace AOCLib.Primitives
 
         public Point Up(Point p)
         {
-            var up = p.Above();
+            var up = p.North();
             if (!Contains(up))
             {
                 up = new Point(p.X, MaximumY);

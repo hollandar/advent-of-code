@@ -129,12 +129,12 @@ namespace AOCLib.Primitives
         }
 
         public Point LeftAbove() => new Point(x - 1, y - 1);
-        public Point Above() => new Point(x, y - 1);
+        public Point North() => new Point(x, y - 1);
         public Point RightAbove() => new Point(x + 1, y - 1);
-        public Point Left() => new Point(x - 1, y);
-        public Point Right() => new Point(x + 1, y);
+        public Point West() => new Point(x - 1, y);
+        public Point East() => new Point(x + 1, y);
         public Point LeftBelow() => new Point(x - 1, y + 1);
-        public Point Below() => new Point(x, y + 1);
+        public Point South() => new Point(x, y + 1);
         public Point RightBelow() => new Point(x + 1, y + 1);
 
         public static Point Zero = new Point(0, 0);

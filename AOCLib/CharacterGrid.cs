@@ -78,11 +78,50 @@ namespace AOCLib
             for (long i = 0; i < length; i++)
             {
                 result[i] = this[p];
-                p = p.Right();
+                p = p.East();
             }
 
             return new string(result);
-            
+        }
+
+        public Point FindSingle(char c)
+        {
+            Point? result = null;
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0 ; x < width; x++)
+                {
+                    if (cells[y, x] == c)
+                    {
+                        if (result is not null) throw new Exception("Multiple instances of " + c);
+                        result = new Point(x, y);
+                    }
+                }
+            }
+
+            return result!;
+        }
+
+        public void Dump(params (ConsoleColor color, HashSet<Point> points)[] highlights)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0 ; x < width; x++)
+                {
+                    ConsoleColor displayColor = ConsoleColor.White;
+                    foreach (var (color, points) in highlights)
+                    {
+                        if (points.Contains(new Point(x, y)))
+                        {
+                            displayColor = color;
+                        }
+                    }
+                    Console.ForegroundColor = displayColor;
+                    Console.Write(cells[y, x]);
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine("--");
         }
     }
 }
