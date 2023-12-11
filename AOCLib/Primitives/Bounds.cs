@@ -75,5 +75,10 @@ namespace AOCLib.Primitives
             return new Point(this.LocalBounds.Bottom - p.Y, p.X);
 
         }
+
+        public override string ToString()
+        {
+            return $"{TopLeft} => {BottomRight}";
+        }
     }
 }
