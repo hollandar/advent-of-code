@@ -123,5 +123,75 @@ namespace AOCLib
             }
             Console.WriteLine("--");
         }
+
+        public IEnumerable<char> Row(int r)
+        {
+            for (int x = 0; x < width; x++)
+            {
+                yield return cells[r, x];
+            }
+        }
+
+        public IEnumerable<char> Column(int c)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                yield return cells[y, c];
+            }
+        }
+
+        public void InsertColumn(int c, IEnumerable<char> values)
+        {
+            Debug.Assert(values.Count() == height);
+            Debug.Assert(c >= 0 && c <= width);
+
+            var newCells = new char[height, width + 1];
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0 ; x < c; x++)
+                {
+                    newCells[y, x] = cells[y, x];
+                }
+                newCells[y, c] = values.ElementAt(y);
+                for (int x = c; x < width; x++)
+                {
+                    newCells[y, x + 1] = cells[y, x];
+                }
+            }
+
+            cells = newCells;
+            width++;
+            bounds = new Bounds(new Point(0, 0), new Point(width - 1, height - 1));
+        }
+
+        public void InsertRow(int r, IEnumerable<char> values)
+        {
+            Debug.Assert(values.Count() == width);
+            Debug.Assert(r >= 0 && r <= height);
+
+            var newCells = new char[height + 1, width];
+            for (int y = 0; y < r; y++)
+            {
+                for (int x = 0 ; x < width; x++)
+                {
+                    newCells[y, x] = cells[y, x];
+                }
+            }
+            for (int x = 0; x < width; x++)
+            {
+                newCells[r, x] = values.ElementAt(x);
+            }
+            for (int y = r; y < height; y++)
+            {
+                for (int x = 0 ; x < width; x++)
+                {
+                    newCells[y + 1, x] = cells[y, x];
+                }
+            }
+
+            cells = newCells;
+            height++;
+            bounds = new Bounds(new Point(0, 0), new Point(width - 1, height - 1));
+        } 
     }
 }
