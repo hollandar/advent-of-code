@@ -13,7 +13,7 @@ public partial class Problem : ProblemPart<InputRow>
         RunPartB("Problem11", RowRegex());
     }
 
-    [GeneratedRegex("(?<Value>.*)")]
+    [GeneratedRegex("(?<Springs>[.#?]+) (?<Numbers>(\\d+[,]?)+)")]
     public static partial Regex RowRegex();
     
 }
