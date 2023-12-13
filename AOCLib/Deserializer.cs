@@ -23,7 +23,10 @@ public class Deserializer
         foreach (var line in lines)
         {
             var match = regex.Match(line);
-
+            if (!match.Success)
+            {
+                throw new Exception("Failed to match line: " + line);
+            }
             if (match.Success)
             {
                 var record = (T)Activator.CreateInstance<T>();
