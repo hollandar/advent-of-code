@@ -7,7 +7,6 @@ public partial class Problem : ProblemPart<InputRow>
 {
     protected override string PartB(IEnumerable<InputRow> datas)
     {
-        SetDebug();
         BigInteger answer = 0;
         foreach (var data in datas)
         {
